@@ -1,23 +1,25 @@
-# ansible-ec2-snapshot for running state instances
-ec2 snapshot automation with Ansible and bash script
+# ansible-ec2-snapshot
+ec2 snapshot using bash script for running state ec2 instances
 
 ## Usage
 
-Setup your ec2 Variables in the `vars/ec2_env.yml` file
+Update the device_name.txt file with your instance id and root device name
 
-```YAML
-device_name: # Instance Root Device (eg. /dev/sda)
-name: # Your EC2 Instance Name
+```
+i-00abcdert13214sd /dev/sda1  # That is not an real instance id 
+i-00asdvasd123rasd /dev/sda1  # That is not an real instance id 
 ```
 
-Update the `ec2_snapshot.sh` script to set if you want to add or delete a snapshot
-
-```Shell
-ansible-playbook playbook.yml -e"add_snapshot=true del_snapshot=false"
+Update the `ec2_snapshot.sh` script with ec2 instance ip and ec2 instance id
 ```
+array['i-00abcdert13214sd']='10.10.10.10' # That is not an real instance id and ip
+array['i-00abcdert13214sd']='10.10.10.10' # That is not an real instance id and ip
 
-Create a CRON job to execut the script automatically
+Note: you should also update the vault password location
+```
+You do not need to do any changes in ec2_snapshot.yml file however you should do update the host file properly.
 
+You can refer to the below script if you would like to create a cron job
 ````
 # Run the script once a month
 0 0 1 * * ansible-ec2-snapshot/ec2_snapshot.sh
