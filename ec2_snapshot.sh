@@ -11,6 +11,7 @@ array['ec2 instance ip']='ec2 instance id'
 array['ec2 instance ip']='ec2 instance id'
 array['ec2 instance ip']='ec2 instance id'
 array['ec2 instance ip']='ec2 instance id'
+array['ec2 instance ip']='ec2 instance id'
 
 for i in "${!array[@]}"
 do
