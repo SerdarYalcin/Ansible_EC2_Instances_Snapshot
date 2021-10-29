@@ -18,7 +18,7 @@ ansible-playbook playbook.yml -e"add_snapshot=true del_snapshot=false"
 
 Create a CRON job to execut the script automatically
 
-```
+````
 # Run the script once a month
 0 0 1 * * ansible-ec2-snapshot/ec2_snapshot.sh
-```
+````
