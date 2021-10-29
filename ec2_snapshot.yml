@@ -9,4 +9,6 @@
                      device_name: "{{ device }}"
                      region: eu-central-1
                      last_snapshot_min_age: 60
+                     
+                     
 
