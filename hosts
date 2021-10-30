@@ -1,2 +1,4 @@
-[targets]
-localhost
+[host_group_name]
+test.github.com
+
+#You can also define the ip of the server
