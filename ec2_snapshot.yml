@@ -2,13 +2,22 @@
 -
    hosts: localhost
    connection: local
+   gather_facts: no
+   vars:
+           my_vars: #Edit instance_id and device_name
+                   - {instanceid: i-0c2**************, device: /dev/xvda}
+                   - {instanceid: i-04***************, device: /dev/xvda}
+                   - {instanceid: i-0a32*************, device: /dev/sda1}
+                   - {instanceid: i-0****************, device: /dev/sda1}
    tasks:
            - name : INFRASTRUCTURE ADD SNAPSHOT
              ec2_snapshot:
-                     instance_id: "{{ instanceid }}"
-                     device_name: "{{ device }}"
+                     instance_id: "{{ item.instanceid }}"
+                     device_name: "{{ item.device }}"
                      region: eu-central-1
                      last_snapshot_min_age: 60
-                     
+                     snapshot_tags:
+                             Name: AnsibleTemporarySnapshot
+             loop: "{{ my_vars }}"
                      
 
