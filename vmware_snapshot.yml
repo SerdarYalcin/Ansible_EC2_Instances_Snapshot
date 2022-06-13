@@ -1,0 +1,44 @@
+---
+-
+   hosts: localhost
+   connection: local
+   vars_files:
+           - /etc/ansible/group_vars/vmware.yml
+   tasks:
+           - name: Gather snapshot information about the virtual machine in the given vCenter
+             vmware_guest_snapshot_info:
+                 validate_certs: no
+                 hostname: "{{ HOSTNAME }}"
+                 username: "{{ USERNAME }}"
+                 password: "{{ PASSWORD }}"
+                 datacenter: Data_Center_Name
+                 folder: Data_Center_Name / VM_Name
+                 name: VM_Name
+             delegate_to: localhost
+             register: snapshot_info
+
+           - name: Remove snapshot if it is exist
+             vmware_guest_snapshot:
+                 validate_certs: no
+                 hostname: "{{ HOSTNAME }}"
+                 username: "{{ USERNAME }}"
+                 password: "{{ PASSWORD }}"
+                 datacenter: Data_Center_Name
+                 folder: Data_Center_Name / VM_Name
+                 name: VM_Name
+                 state: absent
+                 snapshot_name: AnsibleSnapshot
+              delegate_to: localhost
+
+           - name: create a snapshot
+             vmware_guest_snapshot:
+                 validate_certs: no
+                 hostname: "{{ HOSTNAME }}"
+                 username: "{{ USERNAME }}"
+                 password: "{{ PASSWORD }}"
+                 datacenter: Data_Center_Name
+                 folder: Data_Center_Name / VM_Name
+                 name: VM_Name
+                 state: present
+                 snapshot_name: AnsibleSnapshot
+             delegate_to: localhost
