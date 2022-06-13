@@ -4,6 +4,7 @@ ec2 snapshot using bash script for running state ec2 instances & vmware snapshot
 ## Usage
 
 Update vmware_snapshot.yml and vmware.yml files properly for vmware virtual machines
+
 Update the device_name.txt file with your instance id and root device name for ec2 instances
 
 ```
